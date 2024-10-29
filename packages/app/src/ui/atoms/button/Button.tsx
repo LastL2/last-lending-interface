@@ -12,7 +12,7 @@ const buttonVariants = cva(
       variant: {
         primary: 'bg-primary-bg text-primary-foreground hover:bg-primary-hover hover:text-primary-foreground',
         secondary: 'bg-secondary text-secondary-foreground hover:text-blue-700',
-        text: 'border-none text-primary-bg disabled:bg-transparent',
+        text: 'border-none text-secondary disabled:bg-transparent',
         icon: 'border-none',
         green: 'bg-sec-green text-basics-white hover:bg-green-700',
       },

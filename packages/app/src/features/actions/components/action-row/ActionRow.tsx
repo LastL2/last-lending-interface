@@ -125,7 +125,7 @@ function ErrorWarningExtended({ actionHandlerState }: { actionHandlerState: Acti
           <div className="mr-auto flex w-full items-center">
             <img src={assets.warning} alt="warning" className="h-5 w-5" />
             <strong className="ml-0.5 font-semibold text-product-red text-xs">Error:</strong>
-            <p className="ml-1 truncate text-basics-dark-grey text-xs" ref={errorTextRef}>
+            <p className="ml-1 truncate text-white/70 text-xs" ref={errorTextRef}>
               {actionHandlerState.message}
             </p>
           </div>
