@@ -16,11 +16,13 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
       }),
       chainId: mainnet.id,
       contracts: [
+        // Aave v3
         {
           name: 'LendingPoolAddressProvider',
           address: {
             [mainnet.id]: '0x02C3eA4e34C0cBd694D2adFa2c690EECbC1793eE',
             [gnosis.id]: '0xA98DaCB3fC964A6A0d2ce3B77294241585EAbA6d',
+            [lastSepolia.id]: '0xA8bd7972D4ca4bFB543d05322232279909F5f4fe',
           },
         },
         {
@@ -28,6 +30,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xC13e21B648A5Ee794902342038FF3aDAB66BE987',
             [gnosis.id]: '0x2Dae5307c5E3FD1CF5A72Cb6F698f915860607e0',
+            [lastSepolia.id]: '0x3e9b7D063f0bC642207044360aE91F05F398B793',
           },
         },
         {
@@ -35,6 +38,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
             [gnosis.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
+            [lastSepolia.id]: '0x90411906bF54A2b78629A27Dc40038C87e4A8b93',
           },
         },
         {
@@ -42,6 +46,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
             [gnosis.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
+            [lastSepolia.id]: '0xb786C89F5D785aD1092E02153b09c6223a4443e7',
           },
         },
         {
@@ -49,6 +54,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
             [gnosis.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
+            // need to update gho-core to aave v3.2.0
           },
         },
         {
@@ -56,6 +62,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
             [gnosis.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
+            // need to update gho-core to aave v3.2.0
           },
         },
         {
@@ -63,78 +70,93 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xb137E7d16564c81ae2b0C8ee6B55De81dd46ECe5',
             [gnosis.id]: '0xb9E6DBFa4De19CCed908BcbFe1d015190678AB5f',
-          },
-        },
-        {
-          name: 'Chainlog',
-          address: {
-            [mainnet.id]: '0xdA0Ab1e0017DEbCd72Be8599041a2aa3bA7e740F',
-          },
-        },
-        {
-          name: 'SavingsDai',
-          address: {
-            [mainnet.id]: '0x83f20f44975d03b1b09e64809b757c47f942beea',
+            // need to update gho-core to aave v3.2.0
           },
         },
         {
           name: 'V3Migrator',
           address: {
             [mainnet.id]: '0xe2a3C1ff038E14d401cA6dE0673a598C33168460',
+            // not needed - migrator from Aave v2 to v3
+          },
+        },
+        // DAI/MKR
+        {
+          name: 'Chainlog',
+          address: {
+            [mainnet.id]: '0xdA0Ab1e0017DEbCd72Be8599041a2aa3bA7e740F',
+            // contract registry managed by governance (related to MKR DAO)
+          },
+        },
+        {
+          name: 'SavingsDai',
+          address: {
+            [mainnet.id]: '0x83f20f44975d03b1b09e64809b757c47f942beea',
+            /// SavingsDai.sol -- A tokenized representation DAI in the DSR (pot)
           },
         },
         {
           name: 'Vat',
           address: {
             [mainnet.id]: '0x35D1b3F3D7966A1DFe207aa4514C12a259A0492B',
+            /// MKR - vat.sol -- Dai CDP database
           },
         },
         {
           name: 'IAMAutoLine',
           address: {
             [mainnet.id]: '0xC7Bdd1F2B16447dcf3dE045C4a039A60EC2f0ba3',
+            /// debt ceilings for multi-collateral DAI
           },
         },
         {
           name: 'Pot',
           address: {
             [mainnet.id]: '0x197E90f9FAD81970bA7976f33CbD77088E5D7cf7',
+            /// pot.sol -- Dai Savings Rate
           },
         },
         {
           name: 'PSMActions',
           address: {
             [mainnet.id]: '0x5803199F1085d52D1Bb527f24Dc1A2744e80A979',
+            // * @notice Actions for swapping in PSM and depositing in an ERC4626 token.
           },
         },
+        //Spark
         {
           name: 'CapAutomator',
           address: {
             [mainnet.id]: '0x2276f52afba7Cf2525fd0a050DF464AC8532d0ef',
+            //https://github.com/marsfoundation/sparklend-cap-automator/blob/master/src/CapAutomator.sol
           },
         },
         {
           name: 'UsdsPsmWrapper',
           address: {
             [mainnet.id]: '0xA188EEC8F81263234dA3622A406892F3D630f98c',
+            //https://etherscan.io/address/0xa188eec8f81263234da3622a406892f3d630f98c#code
           },
         },
         {
           name: 'DssLitePsm',
           address: {
             [mainnet.id]: '0xf6e72Db5454dd049d0788e411b06CfAF16853042',
+            //https://etherscan.io/address/0xf6e72db5454dd049d0788e411b06cfaf16853042#code
           },
         },
         {
           name: 'MigrationActions',
           address: {
             [mainnet.id]: '0xf86141a5657Cf52AEB3E30eBccA5Ad3a8f714B89',
+            //https://etherscan.io/address/0xf86141a5657cf52aeb3e30ebcca5ad3a8f714b89#code
           },
         },
         {
           name: 'UsdsPsmActions',
           address: {
             [mainnet.id]: '0xd0A61F2963622e992e6534bde4D52fd0a89F39E0',
+            //https://etherscan.io/address/0xd0a61f2963622e992e6534bde4d52fd0a89f39e0#code
           },
         },
       ],
