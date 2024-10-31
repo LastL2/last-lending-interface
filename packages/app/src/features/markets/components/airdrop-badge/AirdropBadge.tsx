@@ -13,12 +13,12 @@ export function AirdropBadge({ 'data-testid': dataTestId }: AirdropBadgeProps) {
   return (
     <Tooltip>
       <TooltipTrigger>
-        <IconPill icon={assets.sparkIcon} data-testid={dataTestId} />
+        <IconPill icon={assets.lastLogo} data-testid={dataTestId} />
       </TooltipTrigger>
       <TooltipContentLong>
         <TooltipContentLayout>
           <TooltipContentLayout.Header>
-            <TooltipContentLayout.Icon src={assets.sparkIcon} />
+            <TooltipContentLayout.Icon src={assets.lastLogo} />
             <TooltipContentLayout.Title>Eligible for Spark Airdrop</TooltipContentLayout.Title>
           </TooltipContentLayout.Header>
 
