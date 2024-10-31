@@ -19,14 +19,14 @@ export function AirdropBadge({ 'data-testid': dataTestId }: AirdropBadgeProps) {
         <TooltipContentLayout>
           <TooltipContentLayout.Header>
             <TooltipContentLayout.Icon src={assets.lastLogo} />
-            <TooltipContentLayout.Title>Eligible for Spark Airdrop</TooltipContentLayout.Title>
+            <TooltipContentLayout.Title>Eligible for LAST points</TooltipContentLayout.Title>
           </TooltipContentLayout.Header>
 
           <TooltipContentLayout.Body>
-            DAI borrowers with volatile assets and ETH depositors will be eligible for a future ⚡&nbsp;SPK airdrop.
+            DAI borrowers with volatile assets and ETH depositors will be eligible for a future LAST points airdrop.
             Please read the details on the{' '}
             <Link to={links.docs.sparkAirdrop} external>
-              Spark Docs
+              Last Docs
             </Link>
             .
           </TooltipContentLayout.Body>
