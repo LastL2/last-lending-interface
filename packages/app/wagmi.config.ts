@@ -30,7 +30,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xC13e21B648A5Ee794902342038FF3aDAB66BE987',
             [gnosis.id]: '0x2Dae5307c5E3FD1CF5A72Cb6F698f915860607e0',
-            //[lastSepolia.id]: '0x8801502bE7c395d40ec6142374802b8a326a0D11',
+            //[lastSepolia.id]: '0x0CfE4DD7063034eE11f2D329D442B7c047469343',
           },
         },
         {
@@ -54,7 +54,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
             [gnosis.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
-            [lastSepolia.id]: '0x3B8e43c8C826897b9EF64254e52d0236b830901A',
+            //[lastSepolia.id]: '0x3B8e43c8C826897b9EF64254e52d0236b830901A',
           },
         },
         {
@@ -62,7 +62,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
             [gnosis.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
-            [lastSepolia.id]: '0xfaefbF2ab3cC90dEAE255B061D32e27EccE4af4d',
+            //[lastSepolia.id]: '0xfaefbF2ab3cC90dEAE255B061D32e27EccE4af4d',
           },
         },
         {
@@ -70,7 +70,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xb137E7d16564c81ae2b0C8ee6B55De81dd46ECe5',
             [gnosis.id]: '0xb9E6DBFa4De19CCed908BcbFe1d015190678AB5f',
-            [lastSepolia.id]: '0x38cbCe65475b55571F65DbEf551397B790631943',
+            //[lastSepolia.id]: '0x38cbCe65475b55571F65DbEf551397B790631943',
             // need to update gho-core to aave v3.2.0
           },
         },
@@ -79,7 +79,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           name: 'CapAutomator',
           address: {
             [mainnet.id]: '0x2276f52afba7Cf2525fd0a050DF464AC8532d0ef',
-            [lastSepolia.id]: '0x1E056d8993f8E09815aa70C81D9e505bC9900ECD',
+            //[lastSepolia.id]: '0x1E056d8993f8E09815aa70C81D9e505bC9900ECD',
           },
         },
         // DAI/MKR
