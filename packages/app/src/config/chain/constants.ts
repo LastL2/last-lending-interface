@@ -1,9 +1,52 @@
 import { AssetsGroup } from '@/domain/farms/types'
 import { CheckedAddress } from '@/domain/types/CheckedAddress'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
-import { base, gnosis, mainnet } from 'viem/chains'
+import { base, mainnet } from 'viem/chains'
 
-export const SUPPORTED_CHAINS = [mainnet, gnosis] as const
+import { type Chain } from 'viem'
+
+export const lastSepolia = {
+  id: 11457,
+  name: 'Last Sepolia',
+  nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+  rpcUrls: {
+    default: { http: ['https://rpc-devnet-a62hx4f2t5.t.conduit.xyz'] },
+  },
+  blockExplorers: {
+    default: { name: 'Conduit', url: 'https://explorer-devnet-a62hx4f2t5.t.conduit.xyz/' },
+  },
+  // @TODO: add contracts?
+  // contracts: {
+  //   ensRegistry: {
+  //     address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+  //   },
+  //   ensUniversalResolver: {
+  //     address: '0xE4Acdd618deED4e6d2f03b9bf62dc6118FC9A4da',
+  //     blockCreated: 16773775,
+  //   },
+  //   multicall3: {
+  //     address: '0xca11bde05977b3631167028862be2a173976ca11',
+  //     blockCreated: 14353601,
+  //   },
+  // },
+} as const satisfies Chain
+
+export const lastSepoliaDynamic = {
+  blockExplorerUrls: [lastSepolia.blockExplorers.default.url],
+  chainId: lastSepolia.id,
+  networkId: lastSepolia.id,
+  chainName: 'devnet-a62hx4f2t5',
+  name: lastSepolia.name,
+  vanityName: lastSepolia.name,
+  iconUrls: ['https://explorer-devnet-a62hx4f2t5.t.conduit.xyz/assets/configs/network_icon_dark.png'],
+  nativeCurrency: {
+    ...lastSepolia.nativeCurrency,
+    iconUrl: 'https://explorer-devnet-a62hx4f2t5.t.conduit.xyz/assets/configs/network_icon_dark.png',
+  },
+  rpcUrls: [lastSepolia.rpcUrls.default.http[0]],
+}
+
+export const SUPPORTED_CHAINS = [mainnet, lastSepolia] as const
 export const SUPPORTED_CHAIN_IDS = SUPPORTED_CHAINS.map((chain) => chain.id)
 
 export const farmStablecoinsEntryGroup: Record<1 | 8453, AssetsGroup> = {

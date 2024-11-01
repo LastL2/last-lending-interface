@@ -1,12 +1,10 @@
 import { getOriginChainId } from '@/domain/hooks/useOriginChainId'
 import {
   fetchRethOracleInfo,
-  fetchSdaiOracleInfoGnosis,
   fetchWeethOracleInfo,
   fetchWstethOracleInfoMainnet,
 } from '@/domain/oracles/oracleInfoFetchers'
 import { baseSavingsInfoQueryOptions } from '@/domain/savings-info/baseSavingsInfo'
-import { gnosisSavingsDaiInfoQuery } from '@/domain/savings-info/gnosisSavingsInfo'
 import { mainnetSavingsDaiInfoQuery, mainnetSavingsUsdsInfoQuery } from '@/domain/savings-info/mainnetSavingsInfo'
 import { useStore } from '@/domain/state'
 import { CheckedAddress } from '@/domain/types/CheckedAddress'
@@ -15,11 +13,11 @@ import { Token } from '@/domain/types/Token'
 import { TokenSymbol } from '@/domain/types/TokenSymbol'
 import { assets } from '@/ui/assets'
 import { zeroAddress } from 'viem'
-import { base, gnosis, mainnet } from 'viem/chains'
-import { NATIVE_ASSET_MOCK_ADDRESS, infoSkyApiUrl } from '../consts'
+import { base, mainnet } from 'viem/chains'
+import { infoSkyApiUrl } from '../consts'
 import { AppConfig } from '../feature-flags'
 import { PLAYWRIGHT_USDS_CONTRACTS_NOT_AVAILABLE_KEY } from '../wagmi/config.e2e'
-import { farmAddresses, farmStablecoinsEntryGroup, susdsAddresses } from './constants'
+import { farmAddresses, farmStablecoinsEntryGroup, lastSepolia, susdsAddresses } from './constants'
 import { ChainConfigEntry, ChainMeta, SupportedChainId } from './types'
 
 const commonTokenSymbolToReplacedName = {
@@ -36,6 +34,25 @@ const PLAYWRIGHT_MAINNET_USDS_CONTRACTS_NOT_AVAILABLE =
   import.meta.env.VITE_PLAYWRIGHT === '1' && (window as any)[PLAYWRIGHT_USDS_CONTRACTS_NOT_AVAILABLE_KEY] === true
 
 const chainConfig: Record<SupportedChainId, ChainConfigEntry> = {
+  [lastSepolia.id]: {
+    originChainId: lastSepolia.id,
+    daiSymbol: undefined,
+    sdaiSymbol: undefined,
+    usdsSymbol: undefined,
+    susdsSymbol: undefined,
+    psmStables: undefined,
+    meta: {
+      name: 'Last Sepolia',
+      logo: assets.lastLogo,
+    },
+    permitSupport: {},
+    tokensWithMalformedApprove: [],
+    airdrop: {},
+    extraTokens: [],
+    markets: undefined,
+    savings: undefined,
+    farms: undefined,
+  },
   [mainnet.id]: {
     originChainId: mainnet.id,
     daiSymbol: TokenSymbol('DAI'),
@@ -199,105 +216,6 @@ const chainConfig: Record<SupportedChainId, ChainConfigEntry> = {
       ],
       getFarmDetailsApiUrl: (address) => `${infoSkyApiUrl}/farms/${address.toLowerCase()}/historic/`,
     },
-  },
-  [gnosis.id]: {
-    originChainId: gnosis.id,
-    daiSymbol: TokenSymbol('XDAI'),
-    sdaiSymbol: TokenSymbol('sDAI'),
-    usdsSymbol: undefined,
-    susdsSymbol: undefined,
-    psmStables: undefined,
-    meta: {
-      name: 'Gnosis Chain',
-      logo: assets.chain.gnosis,
-    },
-    tokensWithMalformedApprove: [],
-    permitSupport: {
-      [CheckedAddress('0x9C58BAcC331c9aa871AFD802DB6379a98e80CEdb')]: false, // GNO
-      [CheckedAddress('0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d')]: false, // WXDAI
-      [CheckedAddress('0xaf204776c7245bF4147c2612BF6e5972Ee483701')]: false, // sDAI
-      [CheckedAddress('0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1')]: false, // WETH
-      [CheckedAddress('0x6C76971f98945AE98dD7d4DFcA8711ebea946eA6')]: false, // wstETH
-      [CheckedAddress('0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83')]: false, // USDC
-      [CheckedAddress('0x4ECaBa5870353805a9F068101A40E0f32ed605C6')]: false, // USDT
-      [CheckedAddress('0xcB444e90D8198415266c6a2724b7900fb12FC56E')]: false, // EURe
-    },
-    airdrop: {},
-    extraTokens: [
-      {
-        symbol: TokenSymbol('XDAI'),
-        oracleType: 'fixed-usd',
-        address: NATIVE_ASSET_MOCK_ADDRESS,
-      },
-      {
-        symbol: TokenSymbol('sDAI'),
-        oracleType: 'vault',
-        address: CheckedAddress('0xaf204776c7245bF4147c2612BF6e5972Ee483701'),
-      },
-    ],
-    markets: {
-      defaultAssetToBorrow: TokenSymbol('WXDAI'),
-      nativeAssetInfo: {
-        nativeAssetName: 'XDAI',
-        wrappedNativeAssetSymbol: TokenSymbol('WXDAI'),
-        wrappedNativeAssetAddress: CheckedAddress('0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d'),
-        nativeAssetSymbol: TokenSymbol('XDAI'),
-        minRemainingNativeAssetBalance: NormalizedUnitNumber(0.1),
-      },
-      tokenSymbolToReplacedName: {
-        ...commonTokenSymbolToReplacedName,
-        [TokenSymbol('WXDAI')]: { name: 'DAI Stablecoin', symbol: TokenSymbol('XDAI') },
-        [TokenSymbol('sDAI')]: { name: 'Savings DAI', symbol: TokenSymbol('sDAI') },
-        [TokenSymbol('USDC')]: { name: 'Circle USD (Legacy)', symbol: TokenSymbol('USDC') },
-        [TokenSymbol('USDC.e')]: { name: 'Circle USD (Bridged)', symbol: TokenSymbol('USDC') },
-        [TokenSymbol('USDT')]: { name: 'Tether USD (Bridged)', symbol: TokenSymbol('USDT') },
-        [TokenSymbol('EURe')]: { name: 'Monerium EURO', symbol: TokenSymbol('EURe') },
-      },
-      oracles: {
-        [TokenSymbol('EURe')]: {
-          type: 'underlying-asset',
-          asset: 'EUR',
-        },
-        [TokenSymbol('WETH')]: {
-          type: 'market-price',
-          providedBy: ['chainlink'],
-        },
-        [TokenSymbol('wstETH')]: {
-          type: 'market-price',
-          providedBy: ['chainlink'],
-        },
-        [TokenSymbol('GNO')]: {
-          type: 'market-price',
-          providedBy: ['chainlink'],
-        },
-        [TokenSymbol('USDC')]: {
-          type: 'fixed',
-        },
-        [TokenSymbol('USDC.e')]: {
-          type: 'fixed',
-        },
-        [TokenSymbol('USDT')]: {
-          type: 'fixed',
-        },
-        [TokenSymbol('WXDAI')]: {
-          type: 'fixed',
-        },
-        [TokenSymbol('sDAI')]: {
-          type: 'yielding-fixed',
-          baseAssetSymbol: TokenSymbol('DAI'),
-          providedBy: ['chainlink'],
-          oracleFetcher: fetchSdaiOracleInfoGnosis,
-        },
-      },
-    },
-    savings: {
-      savingsDaiInfoQuery: gnosisSavingsDaiInfoQuery,
-      savingsUsdsInfoQuery: undefined,
-      inputTokens: [TokenSymbol('XDAI')],
-      getEarningsApiUrl: undefined,
-      savingsRateApiUrl: undefined,
-    },
-    farms: undefined,
   },
   ...(typeof import.meta.env.VITE_DEV_BASE_DEVNET_RPC_URL === 'string'
     ? {
