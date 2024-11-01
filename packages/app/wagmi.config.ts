@@ -2,11 +2,94 @@ import { defineConfig } from '@wagmi/cli'
 import { etherscan } from '@wagmi/cli/plugins'
 import { base, gnosis, mainnet } from 'wagmi/chains'
 import { z } from 'zod'
+import { lendingPoolAddressProviderABI } from './src/abis/evm/lendingPoolAddressProvider'
+import { lendingPoolABI } from './src/abis/evm/lendingPool'
+import { wethGatewayABI } from './src/abis/evm/wethGateway'
+import { walletBalanceProviderABI } from './src/abis/evm/walletBalanceProvider'
+import { uiPoolDataProviderABI } from './src/abis/evm/uiPoolDataProvider'
+import { uiIncentiveDataProviderABI } from './src/abis/evm/uiIncentiveDataProvider'
+import { collectorABI } from './src/abis/evm/collector'
+import { capAutomatorABI } from './src/abis/evm/capAutomator'
+
 import 'dotenv/config'
+
+const LAST_SEPOLIA_ID = 11457
 
 const config: ReturnType<typeof defineConfig> = defineConfig({
   out: 'src/config/contracts-generated.ts',
-  contracts: [],
+  contracts: [
+    {
+      name: 'LendingPoolAddressProvider',
+      abi: lendingPoolAddressProviderABI,
+      address: {
+        [mainnet.id]: '0x02C3eA4e34C0cBd694D2adFa2c690EECbC1793eE',
+        [gnosis.id]: '0xA98DaCB3fC964A6A0d2ce3B77294241585EAbA6d',
+        [LAST_SEPOLIA_ID]: '0x270542372e5a73c39E4290291AB88e2901cCEF2D',
+      },
+    },
+    {
+      name: 'LendingPool',
+      abi: lendingPoolABI,
+      address: {
+        [mainnet.id]: '0xC13e21B648A5Ee794902342038FF3aDAB66BE987',
+        [gnosis.id]: '0x2Dae5307c5E3FD1CF5A72Cb6F698f915860607e0',
+        [LAST_SEPOLIA_ID]: '0x0CfE4DD7063034eE11f2D329D442B7c047469343',
+      },
+    },
+    {
+      name: 'WETHGateway',
+      abi: wethGatewayABI,
+      address: {
+        [mainnet.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
+        [gnosis.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
+        [LAST_SEPOLIA_ID]: '0xDc61577918C467e8d39869482bbD074e7a53853F',
+      },
+    },
+    {
+      name: 'WalletBalanceProvider',
+      abi: walletBalanceProviderABI,
+      address: {
+        [mainnet.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
+        [gnosis.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
+        [LAST_SEPOLIA_ID]: '0x6fB399569c7959F5c528f46ac61De7bE903451F4',
+      },
+    },
+    {
+      name: 'UiPoolDataProvider',
+      abi: uiPoolDataProviderABI,
+      address: {
+        [mainnet.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
+        [gnosis.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
+        [LAST_SEPOLIA_ID]: '0x3B8e43c8C826897b9EF64254e52d0236b830901A',
+      },
+    },
+    {
+      name: 'UiIncentiveDataProvider',
+      abi: uiIncentiveDataProviderABI,
+      address: {
+        [mainnet.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
+        [gnosis.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
+        [LAST_SEPOLIA_ID]: '0xfaefbF2ab3cC90dEAE255B061D32e27EccE4af4d',
+      },
+    },
+    {
+      name: 'Collector',
+      abi: collectorABI,
+      address: {
+        [mainnet.id]: '0xb137E7d16564c81ae2b0C8ee6B55De81dd46ECe5',
+        [gnosis.id]: '0xb9E6DBFa4De19CCed908BcbFe1d015190678AB5f',
+        [LAST_SEPOLIA_ID]: '0x38cbCe65475b55571F65DbEf551397B790631943',
+      },
+    },
+    {
+      name: 'CapAutomator',
+      abi: capAutomatorABI,
+      address: {
+        [mainnet.id]: '0x2276f52afba7Cf2525fd0a050DF464AC8532d0ef',
+        [LAST_SEPOLIA_ID]: '0x1E056d8993f8E09815aa70C81D9e505bC9900ECD',
+      },
+    },
+  ],
   plugins: [
     etherscan({
       apiKey: z.string().parse(process.env.ETHERSCAN_API_KEY, {
@@ -17,71 +100,71 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
       chainId: mainnet.id,
       contracts: [
         // Aave v3
-        {
-          name: 'LendingPoolAddressProvider',
-          address: {
-            [mainnet.id]: '0x02C3eA4e34C0cBd694D2adFa2c690EECbC1793eE',
-            [gnosis.id]: '0xA98DaCB3fC964A6A0d2ce3B77294241585EAbA6d',
-            //[lastSepolia.id]: '0x270542372e5a73c39E4290291AB88e2901cCEF2D',
-          },
-        },
-        {
-          name: 'LendingPool',
-          address: {
-            [mainnet.id]: '0xC13e21B648A5Ee794902342038FF3aDAB66BE987',
-            [gnosis.id]: '0x2Dae5307c5E3FD1CF5A72Cb6F698f915860607e0',
-            //[lastSepolia.id]: '0x0CfE4DD7063034eE11f2D329D442B7c047469343',
-          },
-        },
-        {
-          name: 'WETHGateway',
-          address: {
-            [mainnet.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
-            [gnosis.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
-            //[lastSepolia.id]: '0xDc61577918C467e8d39869482bbD074e7a53853F',
-          },
-        },
-        {
-          name: 'WalletBalanceProvider',
-          address: {
-            [mainnet.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
-            [gnosis.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
-            //[lastSepolia.id]: '0x6fB399569c7959F5c528f46ac61De7bE903451F4',
-          },
-        },
-        {
-          name: 'UiPoolDataProvider',
-          address: {
-            [mainnet.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
-            [gnosis.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
-            //[lastSepolia.id]: '0x3B8e43c8C826897b9EF64254e52d0236b830901A',
-          },
-        },
-        {
-          name: 'UiIncentiveDataProvider',
-          address: {
-            [mainnet.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
-            [gnosis.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
-            //[lastSepolia.id]: '0xfaefbF2ab3cC90dEAE255B061D32e27EccE4af4d',
-          },
-        },
-        {
-          name: 'Collector',
-          address: {
-            [mainnet.id]: '0xb137E7d16564c81ae2b0C8ee6B55De81dd46ECe5',
-            [gnosis.id]: '0xb9E6DBFa4De19CCed908BcbFe1d015190678AB5f',
-            //[lastSepolia.id]: '0x38cbCe65475b55571F65DbEf551397B790631943',
-            // need to update gho-core to aave v3.2.0
-          },
-        },
-        //Spark
-        {
-          name: 'CapAutomator',
-          address: {
-            [mainnet.id]: '0x2276f52afba7Cf2525fd0a050DF464AC8532d0ef',
-            //[lastSepolia.id]: '0x1E056d8993f8E09815aa70C81D9e505bC9900ECD',
-          },
-        },
+        // {
+        //   name: 'LendingPoolAddressProvider',
+        //   address: {
+        //     [mainnet.id]: '0x02C3eA4e34C0cBd694D2adFa2c690EECbC1793eE',
+        //     [gnosis.id]: '0xA98DaCB3fC964A6A0d2ce3B77294241585EAbA6d',
+        //     [LAST_SEPOLIA_ID]: '0x270542372e5a73c39E4290291AB88e2901cCEF2D',
+        //   },
+        // },
+        // {
+        //   name: 'LendingPool',
+        //   address: {
+        //     [mainnet.id]: '0xC13e21B648A5Ee794902342038FF3aDAB66BE987',
+        //     [gnosis.id]: '0x2Dae5307c5E3FD1CF5A72Cb6F698f915860607e0',
+        //     [LAST_SEPOLIA_ID]: '0x0CfE4DD7063034eE11f2D329D442B7c047469343',
+        //   },
+        // },
+        // {
+        //   name: 'WETHGateway',
+        //   address: {
+        //     [mainnet.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
+        //     [gnosis.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
+        //     [LAST_SEPOLIA_ID]: '0xDc61577918C467e8d39869482bbD074e7a53853F',
+        //   },
+        // },
+        // {
+        //   name: 'WalletBalanceProvider',
+        //   address: {
+        //     [mainnet.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
+        //     [gnosis.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
+        //     [LAST_SEPOLIA_ID]: '0x6fB399569c7959F5c528f46ac61De7bE903451F4',
+        //   },
+        // },
+        // {
+        //   name: 'UiPoolDataProvider',
+        //   address: {
+        //     [mainnet.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
+        //     [gnosis.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
+        //     [LAST_SEPOLIA_ID]: '0x3B8e43c8C826897b9EF64254e52d0236b830901A',
+        //   },
+        // },
+        // {
+        //   name: 'UiIncentiveDataProvider',
+        //   address: {
+        //     [mainnet.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
+        //     [gnosis.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
+        //     [LAST_SEPOLIA_ID]: '0xfaefbF2ab3cC90dEAE255B061D32e27EccE4af4d',
+        //   },
+        // },
+        // {
+        //   name: 'Collector',
+        //   address: {
+        //     [mainnet.id]: '0xb137E7d16564c81ae2b0C8ee6B55De81dd46ECe5',
+        //     [gnosis.id]: '0xb9E6DBFa4De19CCed908BcbFe1d015190678AB5f',
+        //     [LAST_SEPOLIA_ID]: '0x38cbCe65475b55571F65DbEf551397B790631943',
+        //     // need to update gho-core to aave v3.2.0
+        //   },
+        // },
+        // //Spark
+        // {
+        //   name: 'CapAutomator',
+        //   address: {
+        //     [mainnet.id]: '0x2276f52afba7Cf2525fd0a050DF464AC8532d0ef',
+        //     [LAST_SEPOLIA_ID]: '0x1E056d8993f8E09815aa70C81D9e505bC9900ECD',
+        //   },
+        // },
         // DAI/MKR
         {
           /**
