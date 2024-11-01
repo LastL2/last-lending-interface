@@ -22,7 +22,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0x02C3eA4e34C0cBd694D2adFa2c690EECbC1793eE',
             [gnosis.id]: '0xA98DaCB3fC964A6A0d2ce3B77294241585EAbA6d',
-            [lastSepolia.id]: '0x270542372e5a73c39E4290291AB88e2901cCEF2D',
+            //[lastSepolia.id]: '0x270542372e5a73c39E4290291AB88e2901cCEF2D',
           },
         },
         {
@@ -30,7 +30,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xC13e21B648A5Ee794902342038FF3aDAB66BE987',
             [gnosis.id]: '0x2Dae5307c5E3FD1CF5A72Cb6F698f915860607e0',
-            [lastSepolia.id]: '0x8801502bE7c395d40ec6142374802b8a326a0D11',
+            //[lastSepolia.id]: '0x8801502bE7c395d40ec6142374802b8a326a0D11',
           },
         },
         {
@@ -38,7 +38,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
             [gnosis.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
-            [lastSepolia.id]: '0xDc61577918C467e8d39869482bbD074e7a53853F',
+            //[lastSepolia.id]: '0xDc61577918C467e8d39869482bbD074e7a53853F',
           },
         },
         {
@@ -46,7 +46,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
             [gnosis.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
-            [lastSepolia.id]: '0x6fB399569c7959F5c528f46ac61De7bE903451F4',
+            //[lastSepolia.id]: '0x6fB399569c7959F5c528f46ac61De7bE903451F4',
           },
         },
         {
@@ -84,6 +84,9 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
         },
         // DAI/MKR
         {
+          /**
+           * Don't see this used currently
+           * */
           name: 'Chainlog',
           address: {
             [mainnet.id]: '0xdA0Ab1e0017DEbCd72Be8599041a2aa3bA7e740F',
@@ -91,6 +94,10 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           },
         },
         {
+          /**
+           * Used in savings deposit/withdraw and farms
+           * Also used in `useNavbar` (can be removed)
+           * */
           name: 'SavingsDai',
           address: {
             [mainnet.id]: '0x83f20f44975d03b1b09e64809b757c47f942beea',
@@ -98,6 +105,10 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           },
         },
         {
+          /**
+           * `domain/d3m-info/D3MInfoQuery.ts
+           * Used in market details only for DAI
+           * */
           name: 'Vat',
           address: {
             [mainnet.id]: '0x35D1b3F3D7966A1DFe207aa4514C12a259A0492B',
@@ -105,6 +116,10 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           },
         },
         {
+          /**
+           * `domain/d3m-info/D3MInfoQuery.ts`
+           * Used in market details only for DAI
+           * */
           name: 'IAMAutoLine',
           address: {
             [mainnet.id]: '0xC7Bdd1F2B16447dcf3dE045C4a039A60EC2f0ba3',
@@ -112,6 +127,11 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           },
         },
         {
+          /**
+           * Used in debug function `features/debug/index.tsx`
+           * `domain/savings-info/mainnetSavingsInfo.ts`
+           * Used in savings
+           * */
           name: 'Pot',
           address: {
             [mainnet.id]: '0x197E90f9FAD81970bA7976f33CbD77088E5D7cf7',
@@ -119,14 +139,21 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           },
         },
         {
+          /**
+           * Used in savings deposit/withdraw for usdc<->susds
+           * */
           name: 'PSMActions',
           address: {
             [mainnet.id]: '0x5803199F1085d52D1Bb527f24Dc1A2744e80A979',
             // * @notice Actions for swapping in PSM and depositing in an ERC4626 token.
           },
         },
-
         {
+          /**
+           * `features/actions/flavours/psm-convert/logic/psmConvertAction.ts`
+           * `features/actions/flavours/convert-stables/logic/createConvertStablesActions.ts`
+           * Used in convert actions to convert usdc<->usds
+           * */
           name: 'UsdsPsmWrapper',
           address: {
             [mainnet.id]: '0xA188EEC8F81263234dA3622A406892F3D630f98c',
@@ -134,6 +161,11 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           },
         },
         {
+          /**
+           * `features/actions/flavours/psm-convert/logic/psmConvertAction.ts`
+           * `features/actions/flavours/convert-stables/logic/createConvertStablesActions.ts`
+           * Used in convert actions to convert usdc<->dai
+           * */
           name: 'DssLitePsm',
           address: {
             [mainnet.id]: '0xf6e72Db5454dd049d0788e411b06CfAF16853042',
@@ -141,6 +173,10 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           },
         },
         {
+          /**
+           * `features/actions/flavours/convert-stables/logic/createConvertStablesActions.ts`
+           * Used for "upgrading" or "downgrading" dai<->usds and savings deposit/withdraw
+           * */
           name: 'MigrationActions',
           address: {
             [mainnet.id]: '0xf86141a5657Cf52AEB3E30eBccA5Ad3a8f714B89',
@@ -148,6 +184,9 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           },
         },
         {
+          /**
+           * Used in savings deposit/withdraw
+           * */
           name: 'UsdsPsmActions',
           address: {
             [mainnet.id]: '0xd0A61F2963622e992e6534bde4D52fd0a89F39E0',
