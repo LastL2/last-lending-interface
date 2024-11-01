@@ -22,7 +22,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0x02C3eA4e34C0cBd694D2adFa2c690EECbC1793eE',
             [gnosis.id]: '0xA98DaCB3fC964A6A0d2ce3B77294241585EAbA6d',
-            [lastSepolia.id]: '0xA8bd7972D4ca4bFB543d05322232279909F5f4fe',
+            [lastSepolia.id]: '0x270542372e5a73c39E4290291AB88e2901cCEF2D',
           },
         },
         {
@@ -30,7 +30,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xC13e21B648A5Ee794902342038FF3aDAB66BE987',
             [gnosis.id]: '0x2Dae5307c5E3FD1CF5A72Cb6F698f915860607e0',
-            [lastSepolia.id]: '0x3e9b7D063f0bC642207044360aE91F05F398B793',
+            [lastSepolia.id]: '0x8801502bE7c395d40ec6142374802b8a326a0D11',
           },
         },
         {
@@ -38,7 +38,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
             [gnosis.id]: '0xBD7D6a9ad7865463DE44B05F04559f65e3B11704',
-            [lastSepolia.id]: '0x90411906bF54A2b78629A27Dc40038C87e4A8b93',
+            [lastSepolia.id]: '0xDc61577918C467e8d39869482bbD074e7a53853F',
           },
         },
         {
@@ -46,7 +46,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
             [gnosis.id]: '0xd2AeF86F51F92E8e49F42454c287AE4879D1BeDc',
-            [lastSepolia.id]: '0xb786C89F5D785aD1092E02153b09c6223a4443e7',
+            [lastSepolia.id]: '0x6fB399569c7959F5c528f46ac61De7bE903451F4',
           },
         },
         {
@@ -54,7 +54,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
             [gnosis.id]: '0xF028c2F4b19898718fD0F77b9b881CbfdAa5e8Bb',
-            // need to update gho-core to aave v3.2.0
+            [lastSepolia.id]: '0x3B8e43c8C826897b9EF64254e52d0236b830901A',
           },
         },
         {
@@ -62,7 +62,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
             [gnosis.id]: '0xA7F8A757C4f7696c015B595F51B2901AC0121B18',
-            // need to update gho-core to aave v3.2.0
+            [lastSepolia.id]: '0xfaefbF2ab3cC90dEAE255B061D32e27EccE4af4d',
           },
         },
         {
@@ -70,14 +70,16 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
           address: {
             [mainnet.id]: '0xb137E7d16564c81ae2b0C8ee6B55De81dd46ECe5',
             [gnosis.id]: '0xb9E6DBFa4De19CCed908BcbFe1d015190678AB5f',
+            [lastSepolia.id]: '0x38cbCe65475b55571F65DbEf551397B790631943',
             // need to update gho-core to aave v3.2.0
           },
         },
+        //Spark
         {
-          name: 'V3Migrator',
+          name: 'CapAutomator',
           address: {
-            [mainnet.id]: '0xe2a3C1ff038E14d401cA6dE0673a598C33168460',
-            // not needed - migrator from Aave v2 to v3
+            [mainnet.id]: '0x2276f52afba7Cf2525fd0a050DF464AC8532d0ef',
+            [lastSepolia.id]: '0x1E056d8993f8E09815aa70C81D9e505bC9900ECD',
           },
         },
         // DAI/MKR
@@ -123,14 +125,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
             // * @notice Actions for swapping in PSM and depositing in an ERC4626 token.
           },
         },
-        //Spark
-        {
-          name: 'CapAutomator',
-          address: {
-            [mainnet.id]: '0x2276f52afba7Cf2525fd0a050DF464AC8532d0ef',
-            //https://github.com/marsfoundation/sparklend-cap-automator/blob/master/src/CapAutomator.sol
-          },
-        },
+
         {
           name: 'UsdsPsmWrapper',
           address: {
