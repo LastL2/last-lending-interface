@@ -47,7 +47,7 @@ export function HealthFactorGauge(props: HealthFactorGaugeProps) {
           transform={`translate(${x} ${y})`}
           stroke={closestValue === value ? '#FC3897' : 'currentColor'}
           fill={closestValue === value ? '#FC3897' : 'currentColor'}
-          fillOpacity={closestValue === value ? 1 : 0.5}
+          opacity={closestValue === value ? 1 : 0.5}
         >
           <text x="0" y="-15">
             1
