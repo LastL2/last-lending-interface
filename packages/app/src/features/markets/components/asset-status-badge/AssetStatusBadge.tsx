@@ -36,10 +36,7 @@ export function AssetStatusBadge({
   return (
     <Tooltip disableHoverableContent>
       <TooltipTrigger className="py-2 md:py-0">
-        <div
-          className="inline-flex gap-3 rounded-xl bg-white/10 px-3 py-2 md:gap-2 md:rounded-lg md:px-2.5 md:py-0.5"
-          data-testid={dataTestId}
-        >
+        <div className="inline-flex gap-3 px-3 py-2 md:gap-2 md:px-2.5 md:py-0.5" data-testid={dataTestId}>
           {supplyIcon}
           {collateralIcon}
           {borrowIcon}

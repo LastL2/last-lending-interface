@@ -15,9 +15,9 @@ export function IndicatorIcon({ icon, variant, className }: IndicatorIconProps) 
 const variants = cva('', {
   variants: {
     variant: {
-      green: 'text-product-green',
-      gray: 'text-white/30',
-      orange: 'text-product-orange',
+      white: 'text-white',
+      gray: 'text-white/20',
+      orange: 'text-white/50',
       red: 'text-product-red',
     },
   },

@@ -1,10 +1,10 @@
 import { MarketAssetStatus } from '@/domain/market-info/reserve-status'
 
-type StatusVariant = 'green' | 'gray' | 'orange' | 'red'
+type StatusVariant = 'white' | 'gray' | 'orange' | 'red'
 
 export function getVariantFromStatus(status: MarketAssetStatus): StatusVariant {
   if (status === 'yes') {
-    return 'green'
+    return 'white'
   }
   if (status === 'no') {
     return 'gray'
