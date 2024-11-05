@@ -24,13 +24,22 @@ export function AssetStatusBadge({
   'data-testid': dataTestId,
 }: AssetStatusBadgeProps) {
   const supplyIcon = (
-    <IndicatorIcon icon={<DownloadIcon className="w-5 md:w-4" />} variant={getVariantFromStatus(supplyStatus)} />
+    <IndicatorIcon
+      icon={<DownloadIcon className="w-5 md:w-4" />}
+      variant={getVariantFromStatus(supplyStatus, { yesWhite: true })}
+    />
   )
   const collateralIcon = (
-    <IndicatorIcon icon={<LayersIcon className="w-5 md:w-4" />} variant={getVariantFromStatus(collateralStatus)} />
+    <IndicatorIcon
+      icon={<LayersIcon className="w-5 md:w-4" />}
+      variant={getVariantFromStatus(collateralStatus, { yesWhite: true })}
+    />
   )
   const borrowIcon = (
-    <IndicatorIcon icon={<UploadIcon className="w-5 md:w-4" />} variant={getVariantFromStatus(borrowStatus)} />
+    <IndicatorIcon
+      icon={<UploadIcon className="w-5 md:w-4" />}
+      variant={getVariantFromStatus(borrowStatus, { yesWhite: true })}
+    />
   )
 
   return (
