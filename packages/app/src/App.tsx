@@ -1,5 +1,5 @@
 import { EthereumWalletConnectors } from '@dynamic-labs/ethereum'
-import { DynamicContextProvider, mergeNetworks } from '@dynamic-labs/sdk-react-core'
+import { DynamicContextProvider } from '@dynamic-labs/sdk-react-core'
 import { DynamicWagmiConnector } from '@dynamic-labs/wagmi-connector'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
@@ -36,7 +36,7 @@ function App() {
         environmentId: import.meta.env.VITE_DYNAMIC_ENVIRONMENT_ID || '',
         walletConnectors: [EthereumWalletConnectors],
         overrides: {
-          evmNetworks: (networks) => mergeNetworks([lastSepoliaDynamic], networks),
+          evmNetworks: [lastSepoliaDynamic],
         },
       }}
     >

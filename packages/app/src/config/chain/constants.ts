@@ -37,7 +37,7 @@ export const lastSepoliaDynamic = {
   rpcUrls: [lastSepolia.rpcUrls.default.http[0]],
 }
 
-export const SUPPORTED_CHAINS = [mainnet, lastSepolia] as const
+export const SUPPORTED_CHAINS = [lastSepolia, mainnet] as const
 export const SUPPORTED_CHAIN_IDS = SUPPORTED_CHAINS.map((chain) => chain.id)
 
 export const farmStablecoinsEntryGroup: Record<1 | 8453, AssetsGroup> = {
