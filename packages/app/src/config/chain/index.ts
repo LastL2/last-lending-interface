@@ -36,8 +36,8 @@ const PLAYWRIGHT_MAINNET_USDS_CONTRACTS_NOT_AVAILABLE =
 const chainConfig: Record<SupportedChainId, ChainConfigEntry> = {
   [lastSepolia.id]: {
     originChainId: lastSepolia.id,
-    daiSymbol: undefined,
-    sdaiSymbol: undefined,
+    daiSymbol: TokenSymbol('USDC'),
+    sdaiSymbol: TokenSymbol('USDC'),
     usdsSymbol: undefined,
     susdsSymbol: undefined,
     psmStables: undefined,
@@ -48,8 +48,38 @@ const chainConfig: Record<SupportedChainId, ChainConfigEntry> = {
     permitSupport: {},
     tokensWithMalformedApprove: [],
     airdrop: {},
-    extraTokens: [],
-    markets: undefined,
+    extraTokens: [
+      {
+        symbol: TokenSymbol('USDC'),
+        oracleType: 'fixed-usd',
+        address: CheckedAddress('0x04f42e29D6057B7D70Ea1cab8E516C0029420B64'),
+      },
+    ],
+    markets: {
+      defaultAssetToBorrow: TokenSymbol('DAI'),
+      nativeAssetInfo: {
+        nativeAssetName: 'Ethereum',
+        wrappedNativeAssetSymbol: TokenSymbol('WETH'),
+        wrappedNativeAssetAddress: CheckedAddress('0x7eA65834587ABF89A94d238a404C4A638Fc7641B'),
+        nativeAssetSymbol: TokenSymbol('ETH'),
+        minRemainingNativeAssetBalance: NormalizedUnitNumber(0.001),
+      },
+      tokenSymbolToReplacedName: {
+        ...commonTokenSymbolToReplacedName,
+      },
+      oracles: {
+        [TokenSymbol('WETH')]: {
+          type: 'market-price',
+          providedBy: ['chainlink', 'chronicle'],
+        },
+        [TokenSymbol('USDC')]: {
+          type: 'fixed',
+        },
+        [TokenSymbol('USDT')]: {
+          type: 'fixed',
+        },
+      },
+    },
     savings: undefined,
     farms: undefined,
   },
