@@ -54,6 +54,11 @@ const chainConfig: Record<SupportedChainId, ChainConfigEntry> = {
         oracleType: 'fixed-usd',
         address: CheckedAddress('0x04f42e29D6057B7D70Ea1cab8E516C0029420B64'),
       },
+      {
+        symbol: TokenSymbol('USDT'),
+        oracleType: 'fixed-usd',
+        address: CheckedAddress('0xc9Fc065b2e986f29138Bd398E6FaAbd291c58B8E'),
+      },
     ],
     markets: {
       defaultAssetToBorrow: TokenSymbol('USDC'),

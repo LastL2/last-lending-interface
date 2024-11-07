@@ -33,7 +33,7 @@ const config: ReturnType<typeof defineConfig> = defineConfig({
       address: {
         [mainnet.id]: '0xC13e21B648A5Ee794902342038FF3aDAB66BE987',
         [gnosis.id]: '0x2Dae5307c5E3FD1CF5A72Cb6F698f915860607e0',
-        [LAST_SEPOLIA_ID]: '0x0CfE4DD7063034eE11f2D329D442B7c047469343',
+        [LAST_SEPOLIA_ID]: '0xBD2f32C02140641f497B0Db7B365122214f7c548',
       },
     },
     {
