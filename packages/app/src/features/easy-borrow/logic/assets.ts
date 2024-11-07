@@ -4,13 +4,13 @@ import { MarketInfo, Reserve, UserPosition } from '@/domain/market-info/marketIn
 import { MarketWalletInfo } from '@/domain/wallet/useMarketWalletInfo'
 import { UpgradeOptions } from './useUpgradeOptions'
 
-const blacklistedDepositableAssets = ['USDC', 'USDT', 'DAI', 'sDAI', 'XDAI']
+const blacklistedDepositableAssets = ['USDC']
 export function getDepositableAssets(positions: UserPosition[], walletInfo: MarketWalletInfo): TokenWithBalance[] {
   return (
     positions
       .filter((p) => p.reserve.status === 'active' && !p.reserve.isIsolated)
       // Filter out reserves that cannot be used as collateral
-      .filter((p) => p.reserve.usageAsCollateralEnabled)
+      // .filter((p) => p.reserve.usageAsCollateralEnabled)
       // Filter out positions that have deposit, but usage as collateral is turned off by user
       .filter((p) => p.collateralBalance.eq(0) || p.reserve.usageAsCollateralEnabledOnUser)
       .filter((p) => !blacklistedDepositableAssets.includes(p.reserve.token.symbol))
@@ -18,7 +18,7 @@ export function getDepositableAssets(positions: UserPosition[], walletInfo: Mark
   )
 }
 
-const whitelistedBorrowableAssets = ['DAI', 'WXDAI']
+const whitelistedBorrowableAssets = ['USDC', 'USDT']
 
 export function getBorrowableAssets(
   reserves: Reserve[],

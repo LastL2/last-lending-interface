@@ -56,7 +56,7 @@ const chainConfig: Record<SupportedChainId, ChainConfigEntry> = {
       },
     ],
     markets: {
-      defaultAssetToBorrow: TokenSymbol('DAI'),
+      defaultAssetToBorrow: TokenSymbol('USDC'),
       nativeAssetInfo: {
         nativeAssetName: 'Ethereum',
         wrappedNativeAssetSymbol: TokenSymbol('WETH'),
