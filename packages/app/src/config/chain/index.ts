@@ -306,7 +306,6 @@ export function getChainConfigEntry(chainId: number): ChainConfigEntry {
       meta: getSandboxChainMeta(chainConfig[originChainId].meta, sandboxConfig),
     }
   }
-  console.log({ chainId, originChainId })
 
   return chainConfig[chainId]
 }
