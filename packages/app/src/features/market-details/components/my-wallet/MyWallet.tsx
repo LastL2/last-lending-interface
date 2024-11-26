@@ -9,6 +9,7 @@ import { ActionRow } from './components/ActionRow'
 import { BorrowRow } from './components/BorrowRow'
 import { TokenBalance } from './components/TokenBalance'
 import { WalletPanelContent } from './components/WalletPanelContent'
+import { TokenSymbol } from '@/domain/types/TokenSymbol'
 
 export interface MyWalletProps {
   token: Token
@@ -44,7 +45,7 @@ export function MyWallet({ token, tokenBalance, lend, deposit, borrow, openDialo
             buttonText="Lend"
           />
         )}
-        {token.symbol !== 'USDXL' && (
+        {token.symbol !== TokenSymbol('USDXL') && (
           <ActionRow
             token={deposit.token}
             value={deposit.available}

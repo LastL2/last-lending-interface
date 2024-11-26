@@ -8,7 +8,7 @@ interface GetBorrowMaxValueParams {
     availableLiquidity: NormalizedUnitNumber
     totalDebt: NormalizedUnitNumber
     borrowCap?: NormalizedUnitNumber
-    address: CheckedAddress
+    address?: CheckedAddress
   }
   user: {
     maxBorrowBasedOnCollateral: NormalizedUnitNumber
