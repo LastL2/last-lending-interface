@@ -44,13 +44,15 @@ export function MyWallet({ token, tokenBalance, lend, deposit, borrow, openDialo
             buttonText="Lend"
           />
         )}
-        <ActionRow
-          token={deposit.token}
-          value={deposit.available}
-          onAction={() => openDialog(depositDialogConfig, { token: deposit.token })}
-          label={token.symbol === 'DAI' ? 'Deposit DAI as collateral' : 'Available to deposit'}
-          buttonText="Deposit"
-        />
+        {token.symbol !== 'USDXL' && (
+          <ActionRow
+            token={deposit.token}
+            value={deposit.available}
+            onAction={() => openDialog(depositDialogConfig, { token: deposit.token })}
+            label={token.symbol === 'DAI' ? 'Deposit DAI as collateral' : 'Available to deposit'}
+            buttonText="Deposit"
+          />
+        )}
         <BorrowRow
           token={borrow.token}
           onAction={() => openDialog(borrowDialogConfig, { token: borrow.token })}
